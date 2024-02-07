@@ -1,0 +1,88 @@
+baseURL: "https://dsuetin.me"
+title: dsuetin.me
+languageCode: en-us
+
+module:
+  imports:
+  - path: github.com/adityatelange/hugo-PaperMod
+
+enableRobotsTXT: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  keywords: [Blog, Danil Suetin, Suetin]
+  author: Danil Suetin
+  DateFormat: "02/01/2006"
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  assets:
+    disableFingerprinting: true
+    favicon: "/icons/favicon.ico"
+    favicon16x16: "/icons/favicon16x16.ico"
+    favicon32x32: "/icons/favicon32x32.ico"
+    apple_touch_icon: "/icons/apple_touch_icon.png"
+  
+  homeInfoParams:
+    Title: Danil Suetin
+    Content: Personal blog
+
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/dani0854"
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/dsuetin"
+    - name: "telegram"
+      url: "t.me/dani0854"
+    # - name: "matrix"
+    #   url: "matrix.to/#/@dani0854:matrix.org"
+    - name: "email"
+      url: "mailto:suetin085@pm.me"
+
+  editPost:
+    URL: "https://github.com/dani0854/dsuetin.me/content"
+    Text: "Suggest Changes"
+    appendFilePath: true
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - identifier: search
+      name: search
+      url: /search/
+      weight: 10
+    - identifier: categories
+      name: categories
+      url: /categories/
+      weight: 20
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 30
+    - identifier: cv
+      name: cv
+      url: /danil_suetin_cv.pdf
+      weight: 40
+    - identifier: pgp
+      name: pgp
+      url: /pubkey.asc
+      weight: 50
+
