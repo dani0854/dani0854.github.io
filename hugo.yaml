@@ -19,6 +19,7 @@ minify:
   minifyOutput: true
 
 params:
+  env: production
   keywords: [Blog, Danil Suetin, Suetin]
   author: Danil Suetin
   DateFormat: "02/01/2006"
