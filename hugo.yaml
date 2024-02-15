@@ -50,10 +50,18 @@ params:
       url: "mailto:suetin085@pm.me"
 
   editPost:
-    URL: "https://github.com/dani0854/dsuetin.me/content"
+    URL: "https://github.com/dani0854/dsuetin.me/main/tree/content"
     Text: "Suggest Changes"
     appendFilePath: true
 
+  showToc: true
+  TocOpen: false
+  UseHugoToc: true
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  ShowWordCount: true
+  
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
