@@ -50,7 +50,7 @@ params:
       url: "mailto:suetin085@pm.me"
 
   editPost:
-    URL: "https://github.com/dani0854/dsuetin.me/main/tree/content"
+    URL: "https://github.com/dani0854/dsuetin.me/tree/main/content"
     Text: "Suggest Changes"
     appendFilePath: true
 
