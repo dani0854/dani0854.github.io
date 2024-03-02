@@ -1,18 +1,21 @@
 baseURL: "https://dsuetin.me"
 title: dsuetin.me
+theme: hugo-coder
 languageCode: en-us
 
-module:
-  imports:
-  - path: github.com/adityatelange/hugo-PaperMod
+# module:
+#   imports:
+#   - path: github.com/luizdepra/hugo-coder
+
+markup:
+  highlight:
+    style: github-dark
 
 enableRobotsTXT: true
 
 outputs:
   home:
-    - HTML
-    - RSS
-    - JSON
+  - HTML
 
 minify:
   disableXML: true
@@ -20,81 +23,73 @@ minify:
 
 params:
   env: production
-  keywords: [Blog, Danil Suetin, Suetin]
   author: Danil Suetin
-  DateFormat: "02/01/2006"
-  defaultTheme: auto
-  disableThemeToggle: false
+  info: IT Enthusiast | DevOps | Big Data | Open Source
+  description: Personal blog
+  keywords: blog,developer,it,devops,personal
+  avatarURL: avatar.jpg
+  favicon_32: icons/favicon32x32.ico
+  favicon_16: icons/favicon16x16.ico
+  touchIcon: icons/apple_touch_icon.png
+  since: 2024
+  colorScheme: auto
+  hideColorSchemeToggle: false
+  enableTwemoji: true
 
-  assets:
-    disableFingerprinting: true
-    favicon: "/icons/favicon.ico"
-    favicon16x16: "/icons/favicon16x16.ico"
-    favicon32x32: "/icons/favicon32x32.ico"
-    apple_touch_icon: "/icons/apple_touch_icon.png"
-  
-  homeInfoParams:
-    Title: Danil Suetin
-    Content: Personal blog
+  social:
+  - name: github
+    icon: fa-brands fa-github fa-2x
+    weight: 1
+    url: https://github.com/dani0854
+  - name: linkedin
+    icon: fa-brands fa-linkedin fa-2x
+    weight: 2
+    url: https://www.linkedin.com/in/dsuetin
+  - name: telegram
+    icon: fa-brands fa-telegram fa-2x
+    weight: 3
+    url: https://t.me/dani0854
+  - name: email
+    icon: fa-solid fa-envelope fa-2x
+    weight: 4
+    url: mailto:suetin085@pm.me
+  - name: cv
+    icon: fa-solid fa-file-pdf fa-2x
+    weight: 5
+    url: danil_suetin_cv.pdf
+  - name: pgp
+    icon: fa-solid fa-key fa-2x
+    weight: 6
+    url: pubkey.asc
 
-  socialIcons:
-    - name: "github"
-      url: "https://github.com/dani0854"
-    - name: "linkedin"
-      url: "https://www.linkedin.com/in/dsuetin"
-    - name: "telegram"
-      url: "t.me/dani0854"
-    # - name: "matrix"
-    #   url: "matrix.to/#/@dani0854:matrix.org"
-    - name: "email"
-      url: "mailto:suetin085@pm.me"
-
-  editPost:
-    URL: "https://github.com/dani0854/dsuetin.me/tree/main/content"
-    Text: "Suggest Changes"
-    appendFilePath: true
-
-  showToc: true
-  TocOpen: false
-  UseHugoToc: true
-  ShowReadingTime: true
-  ShowBreadCrumbs: true
-  ShowPostNavLinks: true
-  ShowWordCount: true
-
-  ShowShareButtons: true
-  ShareButtons: ["linkedin", "reddit", "telegram", "x"]
-  
-  fuseOpts:
-    isCaseSensitive: false
-    shouldSort: true
-    location: 0
-    distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
-    keys: ["title", "permalink", "summary", "content"]
+  giscus:
+    repo: dani0854/dsuetin.me
+    repoID: R_kgDOGMzJ9A
+    category: Posts comments
+    categoryID: DIC_kwDOGMzJ9M4Cdquh
+    mapping: pathname
+    strict: 0
+    reactionsEnabled: 1
+    emitMetadata: 0
+    inputPosition: bottom
+    theme: preferred_color_scheme
+    lang: en
+    loading: lazy
 
 menu:
   main:
-    - identifier: search
-      name: search
-      url: /search/
-      weight: 10
-    - identifier: categories
-      name: categories
-      url: /categories/
-      weight: 20
-    - identifier: tags
-      name: tags
-      url: /tags/
-      weight: 30
-    - identifier: cv
-      name: cv
-      url: /danil_suetin_cv.pdf
-      weight: 40
-    - identifier: pgp
-      name: pgp
-      url: /pubkey.asc
-      weight: 50
-
+  - name: posts
+    weight: 1
+    url: posts/
+  - name: categories
+    weight: 2
+    url: categories/
+  - name: tags
+    weight: 3
+    url: tags/
+  - name: cv
+    weight: 4
+    url: danil_suetin_cv.pdf
+  - name: pgp
+    weight: 5
+    url: pubkey.asc
