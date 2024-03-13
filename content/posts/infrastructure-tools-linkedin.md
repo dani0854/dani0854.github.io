@@ -2,7 +2,6 @@
 title: My perspective on modern infrastructure tools
 date: 2024-02-15
 tags: ["infrastructure", "infra", "tools", "k8s", "kuberenetes", "2024", "linkedin"]
-categories: ["infrastructure"]
 description: "LinkedIn collaborative article"
 featuredImage: images/infrastructure-tools-linkedin.webp
 ---

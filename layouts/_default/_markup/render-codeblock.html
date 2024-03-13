@@ -1,0 +1,111 @@
+{{ if (not (default true (index .Attributes "usecustomhighlight"))) }}
+  {{ $result := transform.HighlightCodeBlock . }}
+  {{ $result.Wrapped }}
+{{ else }}
+  {{ $input := split (trim .Inner "\r\n") "~~~" }}
+  {{ $code := trim (index $input 0) "\r\n" }}
+  {{ $additional := last (sub (len $input) 1) $input }}
+  {{ $filename := index .Attributes "filename" }}
+  {{ $copy := default true (index .Attributes "copy") }}
+  {{ $manual := index .Attributes "manual" }}
+
+  <div class="custom-highlight" code="{{ $code }}" style="margin: 2rem 0">
+    <div class="custom-highlight-tab-bar" style="display: flex; justify-content: space-between; margin: 0 -0.5rem;">
+      <div class="custom-highlight-tab-bar-left" style="display: flex;">
+        {{ if $filename }}
+          <div class="custom-highlight-tab">
+            <strong>{{ .Type }}:</strong> {{ $filename }}
+          </div>
+        {{ end }}
+        {{ if $manual }}
+          <div class="custom-highlight-tab">
+            {{ markdownify $manual }}
+          </div>
+        {{ end }}
+      </div>
+      <div class="custom-highlight-tab-bar-right" style="display: flex; justify-content: flex-end;">
+        {{ if $filename }}
+          {{ $escaped := replace $code "$" "\\$" }}
+          <div title="Copy file as command (cat <<EOF)" class="custom-highlight-tab" style="width: 5rem;" onclick="copyText(this, fileAsCommand='{{ $filename }}')">
+            <i class="fa-solid fa-file-import"></i>
+          </div>
+        {{ end }}
+        {{ if $copy }}
+          <div title="Copy" class="custom-highlight-tab" style="width: 5rem;" onclick="copyText(this)">
+            <i class="fa-solid fa-copy"></i>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+    <div class="custom-highlight-body" style="background-color: #0d1117; color: #dae1e7; padding: 1rem 1rem; border-radius: 1rem">
+      {{ highlight $code .Type .Options }}
+
+      {{ range $additional }}
+        {{ $match := index (findRESubmatch `(?s)^(\w+)(?: +(\w+))?(?: +{(.*?)})? *\r?\n(.*)\s*$` .) 0 }}
+        {{ $type := default "default" (index $match 1) }}
+        {{ $lang := index $match 2 }}
+        {{ $options := index $match 3 }}
+        {{ $inner := index $match 4 }}
+
+        {{ if (eq $type "none") }}
+          <div class="custom-highlight-additionals-none">
+            <hr class="custom-highlight-separator">
+            {{ highlight $inner $lang $options }}
+          </div>
+        {{ end }}
+
+        {{ if (eq $type "input") }}
+          {{ $inputs := findRESubmatch `(?m)^\* +\x60(.*?)\x60(?: +\x60(.*?)\x60)?(?: +"(.*?)")?: +(.*?) *$` $inner }}
+          <div class="custom-highlight-additionals-input">
+            <hr class="custom-highlight-separator">
+            <strong>Input</strong>
+            <table style="border-collapse: collapse">
+              {{ range $inputs }}
+                {{ $name := index . 1 }}
+                {{ $value := index . 2 }}
+                {{ $placeholder := index . 3 }}
+                {{ $description := index . 4 }}
+                <tr>
+                  <td><strong><code>${{ $name }}</code></strong></td>
+                  <td><input type="text" id="{{ $name }}" style="border-radius: 0.6rem; font-size: 1.6rem;" 
+                    {{ if $value }} value="{{ $value }}" {{ end }} 
+                    {{ if $placeholder }} placeholder="{{ $placeholder }}" {{ end }}
+                  ></input></td>
+                  {{ if $description }}
+                    <td>{{ markdownify $description }}</td>
+                  {{ end }}
+                </tr>
+              {{ end }}
+            </table>
+          </div>
+        {{ end }}
+
+        {{ if (eq $type "output") }}
+          <div class="custom-highlight-additionals-output">
+            <hr class="custom-highlight-separator">
+            <strong>Output</strong>
+            {{ highlight $inner $lang $options }}
+          </div>
+        {{ end }}
+
+        {{ if (eq $type "desc") }}
+          {{ $descriptions := findRESubmatch `(?m)^\* +\x60(.*?)\x60: +(.*?) *$` $inner }}
+          <div class="custom-highlight-additionals-description">
+            <hr class="custom-highlight-separator">
+            <strong>Description</strong>
+            <dl style="margin: 0">
+              {{ range $descriptions }}
+                {{ $name := index . 1 }}
+                {{ $description := index . 2 }}
+                <div id="{{ index . 1 }}" class="custom-highlight-additionals-description-item">
+                  <dt><strong><code>{{ $name }}</code></strong></dt>
+                  <dd>{{ markdownify ( $description) }}</dd>
+                </div>
+              {{ end }}
+            </dl>
+          </div>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

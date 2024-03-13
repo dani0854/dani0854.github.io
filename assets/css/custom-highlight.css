@@ -1,0 +1,22 @@
+.custom-highlight-body pre {
+  margin: 0 0;
+  padding: 0.5rem 0;
+}
+
+.custom-highlight-tab {
+  display: inline-block;
+  background-color: #0d1117;
+  color: #dae1e7;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  padding: 0.5rem 1.5rem;
+  margin: 0 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: -1rem;
+  text-align: center;
+}
+
+.custom-highlight-additionals-input td {
+  border: 0!important;
+  padding: 0.5rem!important;
+}

@@ -36,6 +36,9 @@ params:
   hideColorSchemeToggle: false
   enableTwemoji: true
 
+  customJS: [ "js/copy.js" ]
+  customCSS: [ "css/custom-highlight.css" ]
+
   social:
   - name: github
     icon: fa-brands fa-github fa-2x
@@ -72,7 +75,7 @@ params:
     reactionsEnabled: 1
     emitMetadata: 0
     inputPosition: bottom
-    theme: preferred_color_scheme
+    theme: github-dark
     lang: en
     loading: lazy
 
@@ -81,15 +84,12 @@ menu:
   - name: posts
     weight: 1
     url: posts/
-  - name: categories
-    weight: 2
-    url: categories/
   - name: tags
-    weight: 3
+    weight: 2
     url: tags/
   - name: cv
-    weight: 4
+    weight: 3
     url: danil_suetin_cv.pdf
   - name: pgp
-    weight: 5
+    weight: 4
     url: pubkey.asc
