@@ -26,12 +26,12 @@
       <div class="custom-highlight-tab-bar-right" style="display: flex; justify-content: flex-end;">
         {{ if $filename }}
           {{ $escaped := replace $code "$" "\\$" }}
-          <div title="Copy file as command (cat <<EOF)" class="custom-highlight-tab" style="width: 5rem;" onclick="copyText(this, fileAsCommand='{{ $filename }}')">
+          <div title="Copy file as command (cat <<EOF)" class="custom-highlight-tab" style="width: 5rem; cursor: pointer;" onclick="copyText(this, fileAsCommand='{{ $filename }}')">
             <i class="fa-solid fa-file-import"></i>
           </div>
         {{ end }}
         {{ if $copy }}
-          <div title="Copy" class="custom-highlight-tab" style="width: 5rem;" onclick="copyText(this)">
+          <div title="Copy" class="custom-highlight-tab" style="width: 5rem; cursor: pointer;" onclick="copyText(this)">
             <i class="fa-solid fa-copy"></i>
           </div>
         {{ end }}
