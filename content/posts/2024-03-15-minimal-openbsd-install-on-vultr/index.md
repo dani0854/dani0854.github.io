@@ -2,7 +2,7 @@
 title: 'Minimal OpenBSD install on Vultr'
 date: '2024-03-15'
 tags: ['openbsd', 'minimal', 'tutorial']
-featuredImage: 'images/minimal-openbsd-install-on-vultr.webp'
+featuredImage: 'cover.webp'
 ---
 
 {{< notice info >}}
